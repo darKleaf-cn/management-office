@@ -1,7 +1,5 @@
 import Mock from 'mockjs';
-import { RqUserLogin } from '@/interface/request';
-export function login(option: RqUserLogin) {
-  console.log(option);
+export function login() {
   return {
     code: 200,
     message: 'success',

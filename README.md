@@ -266,3 +266,201 @@
 	message: "成功"
 }
 ```
+
+## 2 申领模块
+
+- **用户相关接口地址统一前缀：** /apply
+
+### 2.1 申领列表
+
+- **地址：** /list
+
+#### 2.1.1 请求参数
+
+| 参数名称            | 类型   | 必要   | 描述                                     |
+| :------------------ | :----- | :----- | :--------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                               |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要   | &nbsp;                                   |
+| &emsp;page          | int    | 必要   | 页数                                     |
+| &emsp;size          | int    | 必要   | 每页条数                                 |
+| &emsp;applyPeople   | string | 不必要 | 申领人                                   |
+
+请求实例：
+
+```
+{
+	page:1,
+	size:10，
+	applyPeople:''
+}
+```
+
+#### 2.1.2 返回结果
+
+| 参数名称                  | 类型   | 必要 | 描述         |
+| :------------------------ | :----- | :--- | :----------- |
+| code                      | int    | 必要 | 状态码       |
+| message                   | string | 必要 |
+| data                      | object | 必要 | &nbsp;       |
+| &emsp;total               | number | 必要 | 申领记录总数 |
+| &emsp;applyList           | array  | 必要 | 申领记录数组 |
+| &emsp;&emsp;applyId       | string | 必要 | 申领记录 id  |
+| &emsp;&emsp;applyPeople   | string | 必要 | 申领人       |
+| &emsp;&emsp;applyPhone    | string | 必要 | 申领人电话   |
+| &emsp;&emsp;applyDeviceId | string | 必要 | 申领物品 Id  |
+| &emsp;&emsp;applyDevice   | string | 必要 | 申领物品     |
+| &emsp;&emsp;applyNum      | int    | 必要 | 申领物品数量 |
+| &emsp;&emsp;applyReason   | string | 必要 | 申领理由     |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+	data: {
+		total: 1,
+		applyList: [
+			{
+				applyId: "12312312",
+				applyPeople: "张三",
+				applyPhone "123123",
+				applyDeviceId： "231232"
+				applyDevice: "办公桌",
+				applyNum: 1,
+				applyReason: "理由"
+			}
+		]
+	}
+}
+```
+
+### 2.2 申领添加
+
+- **地址：** /add
+
+#### 2.2.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;applyPeople   | string | 必要 | 申领人                                   |
+| &emsp;applyPhone    | string | 必要 | 申领人电话                               |
+| &emsp;applyDeviceId | string | 必要 | 申领物品 Id                              |
+| &emsp;applyNum      | int    | 必要 | 申领物品数量                             |
+| &emsp;applyReason   | string | 必要 | 申领理由                                 |
+
+请求实例：
+
+```
+{
+	applyPeople: "张三",
+	applyPhone "123123",
+	applyDeviceId： "231232"
+	applyNum: 1,
+	applyReason: "理由"
+}
+```
+
+#### 2.2.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+### 2.3 用户删除
+
+- **地址：** /delete
+
+#### 2.3.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;applyId       | string | 必要 | 申领记录 id                              |
+
+请求实例：
+
+```
+{
+	userId: "121212"
+}
+```
+
+#### 2.3.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+### 2.4 用户修改
+
+- **地址：** /update
+
+#### 2.4.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;applyId       | string | 必要 | 申领记录 id                              |
+| &emsp;applyPeople   | string | 必要 | 申领人                                   |
+| &emsp;applyPhone    | string | 必要 | 申领人电话                               |
+| &emsp;applyDeviceId | string | 必要 | 申领物品 Id                              |
+| &emsp;applyNum      | int    | 必要 | 申领物品数量                             |
+| &emsp;applyReason   | string | 必要 | 申领理由                                 |
+
+请求实例：
+
+```
+{
+	applyId: "12312312",
+	applyPeople: "张三",
+	applyPhone "123123",
+	applyDeviceId： "231232",
+	applyNum: 1,
+	applyReason: "理由"
+}
+```
+
+#### 2.4.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```

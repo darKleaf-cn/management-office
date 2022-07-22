@@ -8,6 +8,7 @@ export interface RqUserLogin {
 export interface RqUserList {
   page: number;
   size: number;
+  username: string;
 }
 
 // 用户添加
@@ -28,4 +29,35 @@ export interface RqUserUpdate {
   username: string;
   password: string;
   userPermission: string;
+}
+
+// 申领列表
+export interface RqApplyList {
+  page: number;
+  size: number;
+  applyPeople: string;
+}
+
+// 申领添加
+export interface RqApplyAdd {
+  applyPeople: string;
+  applyPhone: string;
+  applyDeviceId: string;
+  applyNum: number;
+  applyReason: string;
+}
+
+// 申领删除
+export interface RqApplyDelete {
+  applyId: string;
+}
+
+// 申领修改
+export interface RqApplyUpdate {
+  applyId: string;
+  applyPeople: string;
+  applyPhone: string;
+  applyDeviceId: string;
+  applyNum: number;
+  applyReason: string;
 }
