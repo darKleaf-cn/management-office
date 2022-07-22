@@ -43,7 +43,7 @@ export interface RqApplyAdd {
   applyPeople: string;
   applyPhone: string;
   applyDeviceId: string;
-  applyNum: number;
+  applyDeviceNum: number;
   applyReason: string;
 }
 
@@ -58,6 +58,6 @@ export interface RqApplyUpdate {
   applyPeople: string;
   applyPhone: string;
   applyDeviceId: string;
-  applyNum: number;
+  applyDeviceNum: number;
   applyReason: string;
 }

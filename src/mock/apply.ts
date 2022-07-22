@@ -7,9 +7,9 @@ export function applyList() {
         'applyId|1': '@id',
         'applyPeople|1': '@ctitle',
         'applyPhone|1': '@string',
-        'applyDevice|1': '@string',
+        'applyDeviceName|1': '@string',
         'applyDeviceId|1': '@string',
-        'applyNum|1-10': 1,
+        'applyDeviceNum|1-10': 1,
         'applyReason|1': '@string'
       }
     ]

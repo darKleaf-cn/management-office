@@ -23,8 +23,8 @@
         <el-table-column prop="applyId" label="申领记录id"></el-table-column>
         <el-table-column prop="applyPeople" label="申领人"> </el-table-column>
         <el-table-column prop="applyPhone" label="申领人电话"> </el-table-column>
-        <el-table-column prop="applyDevice" label="申领物品"> </el-table-column>
-        <el-table-column prop="applyNum" label="申领物品数量"> </el-table-column>
+        <el-table-column prop="applyDeviceName" label="申领物品"> </el-table-column>
+        <el-table-column prop="applyDeviceNum" label="申领物品数量"> </el-table-column>
         <el-table-column prop="applyReason" label="申领理由"> </el-table-column>
         <el-table-column label="操作" width="150">
           <template #default="scope">
@@ -64,8 +64,8 @@
         <el-form-item label="申领物品" prop="applyDeviceId">
           <el-input v-model="data.applyForm.applyDeviceId"></el-input>
         </el-form-item>
-        <el-form-item label="申领物品数量" prop="applyNum">
-          <el-input v-model="data.applyForm.applyNum" type="number" min="1"></el-input>
+        <el-form-item label="申领物品数量" prop="applyDeviceNum">
+          <el-input v-model="data.applyForm.applyDeviceNum" type="number" min="1"></el-input>
         </el-form-item>
         <el-form-item label="申领理由" prop="applyReason">
           <el-input v-model="data.applyForm.applyReason"></el-input>
@@ -104,7 +104,7 @@ export default defineComponent({
         applyPeople: '',
         applyPhone: '',
         applyDeviceId: '',
-        applyNum: 1,
+        applyDeviceNum: 1,
         applyReason: ''
       }
     });
@@ -190,10 +190,11 @@ export default defineComponent({
         applyPeople: '',
         applyPhone: '',
         applyDeviceId: '',
-        applyNum: 1,
+        applyDeviceNum: 1,
         applyReason: ''
       };
       dialogFormVisible.value = false;
+      queryList();
     }
     async function update() {
       if (form.value) {
@@ -213,7 +214,7 @@ export default defineComponent({
               applyPeople: '',
               applyPhone: '',
               applyDeviceId: '',
-              applyNum: 1,
+              applyDeviceNum: 1,
               applyReason: ''
             };
             await queryList();
@@ -239,7 +240,7 @@ export default defineComponent({
               applyPeople: '',
               applyPhone: '',
               applyDeviceId: '',
-              applyNum: 1,
+              applyDeviceNum: 1,
               applyReason: ''
             };
             queryList();

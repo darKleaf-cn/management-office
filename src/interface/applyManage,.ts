@@ -2,8 +2,8 @@ export interface ApplyForm {
   applyId: string;
   applyPeople: string;
   applyPhone: string;
-  applyDevice?: string;
+  applyDeviceName?: string;
   applyDeviceId: string;
-  applyNum: number;
+  applyDeviceNum: number;
   applyReason: string;
 }
