@@ -93,20 +93,22 @@
 
 #### 1.3.1 请求参数
 
-| 参数名称            | 类型   | 必要 | 描述                                     |
-| :------------------ | :----- | :--- | :--------------------------------------- |
-| Header              | &nbsp; | 必要 | 请求报文头                               |
-| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
-| body                | &nbsp; | 必要 | &nbsp;                                   |
-| &emsp;page          | int    | 必要 | 页数                                     |
-| &emsp;size          | int    | 必要 | 每页条数                                 |
+| 参数名称            | 类型   | 必要   | 描述                                     |
+| :------------------ | :----- | :----- | :--------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                               |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要   | &nbsp;                                   |
+| &emsp;page          | int    | 必要   | 页数                                     |
+| &emsp;size          | int    | 必要   | 每页条数                                 |
+| &emsp;username      | string | 不必要 | 用户名                                   |
 
 请求实例：
 
 ```
 {
 	page:1,
-	size:10
+	size:10，
+	username:''
 }
 ```
 

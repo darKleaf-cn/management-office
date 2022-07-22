@@ -12,7 +12,7 @@
           <el-input
             v-model="form.username"
             autocomplete="off"
-            prefix-icon="el-icon-user"
+            prefix-icon="User"
             placeholder="请输入用户名"
           ></el-input>
         </el-form-item>
@@ -21,7 +21,7 @@
             type="password"
             v-model="form.password"
             autocomplete="off"
-            prefix-icon="el-icon-lock"
+            prefix-icon="Lock"
             placeholder="请输入密码"
           ></el-input>
         </el-form-item>
@@ -68,6 +68,7 @@ export default defineComponent({
       ]
     });
     const store = useStore();
+    const router = useRouter();
 
     const submitForm = async (formEl: FormInstance | undefined) => {
       if (!formEl) {
@@ -89,8 +90,8 @@ export default defineComponent({
           if (res.code === 200) {
             Message('success', '登录成功');
             store.commit('SET_USER', res.data);
-            useRouter().push({
-              path: ''
+            router.push({
+              path: '/'
             });
           } else {
             Message('error', res.message);
@@ -120,7 +121,7 @@ export default defineComponent({
   .login-container {
     width: 400px;
     background: #ffffff;
-    border-radius: 10%;
+    border-radius: 5%;
     border: 2px solid #409eff;
     color: #409eff;
     h1 {

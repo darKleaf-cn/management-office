@@ -1,6 +1,6 @@
 import { ElMessage } from 'element-plus';
 
-export default function (type: string, message: string) {
+export default function Message(type: string, message: string) {
   switch (type) {
     case 'error':
       ElMessage.error({

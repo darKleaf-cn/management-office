@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import Layout from '@/components/Layout.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,10 +12,32 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    redirect: 'login',
+    redirect: 'user',
     meta: {
       hidden: true
     }
+  },
+  {
+    path: '/',
+    component: Layout,
+    name: '用户管理',
+    children: [
+      {
+        path: '/user',
+        component: () => import('@/views/user/UserManage.vue')
+      }
+    ]
+  },
+	{
+    path: '/',
+    component: Layout,
+    name: '申领管理',
+    children: [
+      {
+        path: '/apply',
+        component: () => import('@/views/apply/ApplyManage.vue')
+      }
+    ]
   }
 ];
 
