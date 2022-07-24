@@ -10,7 +10,7 @@ export interface RsUserLogin extends RsNormal {
     userId: string;
     username: string;
     token: string;
-    permission: string;
+    permission: number;
   };
 }
 

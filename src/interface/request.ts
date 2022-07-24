@@ -15,7 +15,7 @@ export interface RqUserList {
 export interface RqUserAdd {
   username: string;
   password: string;
-  userPermission: string;
+  userPermission: number;
 }
 
 // 用户删除
@@ -28,7 +28,7 @@ export interface RqUserUpdate {
   userId: string;
   username: string;
   password: string;
-  userPermission: string;
+  userPermission: number;
 }
 
 // 申领列表

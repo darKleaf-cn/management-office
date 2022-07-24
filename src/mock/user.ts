@@ -7,7 +7,7 @@ export function login() {
       userId: '1212',
       username: '12121',
       token: '123213213',
-      permission: '1'
+      permission: 1
     }
   };
 }
@@ -26,7 +26,7 @@ export function userList() {
         'userId|1': '@id',
         'username|1': '@ctitle',
         'password|1': '@string',
-        'userPermission|1': /3||2/
+        'userPermission|2-3': 0
       }
     ]
   });

@@ -8,5 +8,5 @@ export interface UserForm {
   userId: string;
   username: string;
   password: string;
-  userPermission: string;
+  userPermission: number;
 }

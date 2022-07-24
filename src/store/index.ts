@@ -6,7 +6,7 @@ export default createStore({
     userId: '',
     username: '',
     token: '',
-    permission: ''
+    permission: 0
   },
   getters: {},
   mutations,

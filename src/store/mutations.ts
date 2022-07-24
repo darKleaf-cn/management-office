@@ -15,7 +15,7 @@ const mutations = {
     state.userId = '';
     state.username = '';
     state.token = '';
-    state.permission = '';
+    state.permission = 0;
     removeStore('user');
   }
 };

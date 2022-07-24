@@ -25,7 +25,7 @@
         <!-- <el-table-column prop="password" label="用户密码"> </el-table-column> -->
         <el-table-column prop="userPermission" label="用户权限">
           <template #default="scope">
-            <el-tag v-if="scope.row.userPermission === '2'"> 管理</el-tag>
+            <el-tag v-if="scope.row.userPermission === 2"> 管理</el-tag>
             <el-tag v-else type="success">审核</el-tag>
           </template></el-table-column
         >
@@ -102,7 +102,7 @@ export default defineComponent({
         userId: '',
         username: '',
         password: '',
-        userPermission: ''
+        userPermission: 0
       }
     });
     // 搜索模块
@@ -185,7 +185,7 @@ export default defineComponent({
         userId: '',
         username: '',
         password: '',
-        userPermission: ''
+        userPermission: 0
       };
       dialogFormVisible.value = false;
     }
@@ -214,7 +214,7 @@ export default defineComponent({
               userId: '',
               username: '',
               password: '',
-              userPermission: ''
+              userPermission: 0
             };
             await queryList();
           }
@@ -246,7 +246,7 @@ export default defineComponent({
               userId: '',
               username: '',
               password: '',
-              userPermission: ''
+              userPermission: 0
             };
             queryList();
           }

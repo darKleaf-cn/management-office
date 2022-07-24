@@ -35,7 +35,7 @@
 | &emsp;userId     | string | 必要 | 用户 id                                                   |
 | &emsp;username   | string | 必要 | 用户名称                                                  |
 | &emsp;token      | string | 必要 | 验证登录                                                  |
-| &emsp;permission | string | 必要 | 用户权限（枚举值：1，最高权限；2、管理权限；3、审核权限） |
+| &emsp;permission | int    | 必要 | 用户权限（枚举值：1，最高权限；2、管理权限；3、审核权限） |
 
 请求实例：
 
@@ -47,7 +47,7 @@
 		userId: "1231312",
 		username: "qianye",
 		token: "MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6k"，
-		permission: '1'
+		permission: 1
 	}
 }
 ```
@@ -124,7 +124,7 @@
 | &emsp;&emsp;userId         | string | 必要 | 用户 id                  |
 | &emsp;&emsp;username       | string | 必要 | 用户名                   |
 | &emsp;&emsp;password       | string | 必要 | 密码(md5 加密和公钥加密) |
-| &emsp;&emsp;userPermission | string | 必要 | 用户权限                 |
+| &emsp;&emsp;userPermission | int    | 必要 | 用户权限                 |
 
 请求实例：
 
@@ -139,7 +139,7 @@
 				userId: "12312312",
 				username: "admin",
 				password： "MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6k",
-				userPermission: "2",
+				userPermission: 2
 			}
 		]
 	}
@@ -159,7 +159,7 @@
 | body                 | &nbsp; | 必要 | &nbsp;                                   |
 | &emsp;username       | string | 必要 | 用户名                                   |
 | &emsp;password       | string | 必要 | 密码(md5 加密和公钥加密)                 |
-| &emsp;userPermission | string | 必要 | 用户权限                                 |
+| &emsp;userPermission | int    | 必要 | 用户权限                                 |
 
 请求实例：
 
@@ -167,7 +167,7 @@
 {
 	username: "admin",
 	password： "MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6k",
-	userPermission: "2",
+	userPermission: 2,
 }
 ```
 
@@ -238,7 +238,7 @@
 | &emsp;userId         | string | 必要 | 用户 id                                  |
 | &emsp;username       | string | 必要 | 用户名                                   |
 | &emsp;password       | string | 必要 | 密码(md5 加密和公钥加密)                 |
-| &emsp;userPermission | string | 必要 | 用户权限                                 |
+| &emsp;userPermission | int    | 必要 | 用户权限                                 |
 
 请求实例：
 
@@ -247,7 +247,7 @@
 	userId: "121212",
 	username: "admin",
 	password： "MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6k",
-	userPermission: "2",
+	userPermission: 2,
 }
 ```
 
@@ -269,7 +269,7 @@
 
 ## 2 申领模块
 
-- **用户相关接口地址统一前缀：** /apply
+- **申领相关接口地址统一前缀：** /apply
 
 ### 2.1 申领列表
 
@@ -312,6 +312,7 @@
 | &emsp;&emsp;applyDeviceName | string | 必要 | 申领物品名称 |
 | &emsp;&emsp;applyDeviceNum  | int    | 必要 | 申领物品数量 |
 | &emsp;&emsp;applyReason     | string | 必要 | 申领理由     |
+| &emsp;&emsp;applyTime       | string | 必要 | 申领时间     |
 
 请求实例：
 
@@ -329,7 +330,8 @@
 				applyDeviceId： "231232"
 				applyDeviceName: "办公桌",
 				applyDeviceNum: 1,
-				applyReason: "理由"
+				applyReason: "理由",
+				applyTime: "2020-01-03"
 			}
 		]
 	}
@@ -352,6 +354,7 @@
 | &emsp;applyDeviceId  | string | 必要 | 申领物品 Id                              |
 | &emsp;applyDeviceNum | int    | 必要 | 申领物品数量                             |
 | &emsp;applyReason    | string | 必要 | 申领理由                                 |
+| &emsp;applyTime      | string | 必要 | 申领时间                                 |
 
 请求实例：
 
@@ -361,7 +364,8 @@
 	applyPhone "123123",
 	applyDeviceId： "231232"
 	applyDeviceNum: 1,
-	applyReason: "理由"
+	applyReason: "理由"，
+	applyTime: "2020-01-03"
 }
 ```
 
@@ -381,7 +385,7 @@
 }
 ```
 
-### 2.3 用户删除
+### 2.3 申领删除
 
 - **地址：** /delete
 
@@ -418,7 +422,7 @@
 }
 ```
 
-### 2.4 用户修改
+### 2.4 申领修改
 
 - **地址：** /update
 
@@ -465,9 +469,9 @@
 }
 ```
 
-## 3 库存模块/设备模块/采购模块/报销模块
+## 3 库存模块/报废模块
 
-- **用户相关接口地址统一前缀：** /device
+- **设备相关接口地址统一前缀：** /device
 
 ### 3.1 列表
 
