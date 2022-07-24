@@ -6,4 +6,6 @@ export interface ApplyForm {
   applyDeviceId: string;
   applyDeviceNum: number;
   applyReason: string;
+  applyTime: string;
+  applyState?: number;
 }

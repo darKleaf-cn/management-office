@@ -20,18 +20,35 @@
         stripe
         :border="true"
       >
-        <el-table-column prop="applyId" label="申领记录id"></el-table-column>
         <el-table-column prop="applyPeople" label="申领人"> </el-table-column>
         <el-table-column prop="applyPhone" label="申领人电话"> </el-table-column>
         <el-table-column prop="applyDeviceName" label="申领物品"> </el-table-column>
         <el-table-column prop="applyDeviceNum" label="申领物品数量"> </el-table-column>
         <el-table-column prop="applyReason" label="申领理由"> </el-table-column>
+        <el-table-column prop="applyTime" label="申领时间"> </el-table-column>
+        <el-table-column prop="applyTime" label="申领状态">
+          <template #default="scope">
+            <el-tag v-if="scope.row.applyState === 1">审核中</el-tag>
+            <el-tag v-else-if="scope.row.applyState === 2" type="success">审核成功</el-tag>
+            <el-tag v-else type="danger">审核失败</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column label="操作" width="150">
           <template #default="scope">
-            <el-button type="primary" size="small" plain @click="update1(scope.row)"
+            <el-button
+              type="primary"
+              size="small"
+              plain
+              @click="update1(scope.row)"
+              :disabled="scope.row.applyState !== 2"
               >修改</el-button
             >
-            <el-button type="danger" size="small" plain @click="delete1(scope.row.applyId)"
+            <el-button
+              type="danger"
+              size="small"
+              plain
+              @click="delete1(scope.row.applyId)"
+              :disabled="scope.row.applyState === 1"
               >删除</el-button
             >
           </template>
@@ -105,7 +122,8 @@ export default defineComponent({
         applyPhone: '',
         applyDeviceId: '',
         applyDeviceNum: 1,
-        applyReason: ''
+        applyReason: '',
+        applyTime: ''
       }
     });
     // 搜索模块
@@ -191,7 +209,8 @@ export default defineComponent({
         applyPhone: '',
         applyDeviceId: '',
         applyDeviceNum: 1,
-        applyReason: ''
+        applyReason: '',
+        applyTime: ''
       };
       dialogFormVisible.value = false;
       queryList();
@@ -215,7 +234,8 @@ export default defineComponent({
               applyPhone: '',
               applyDeviceId: '',
               applyDeviceNum: 1,
-              applyReason: ''
+              applyReason: '',
+              applyTime: ''
             };
             await queryList();
           }
@@ -227,6 +247,7 @@ export default defineComponent({
         await form.value.validate(async (valid) => {
           if (valid) {
             const params = { ...data.applyForm };
+            params.applyTime = new Date().toString();
 
             const res: RsNormal = await applyAdd(params);
             if (res.code === 200) {
@@ -241,7 +262,8 @@ export default defineComponent({
               applyPhone: '',
               applyDeviceId: '',
               applyDeviceNum: 1,
-              applyReason: ''
+              applyReason: '',
+              applyTime: ''
             };
             queryList();
           }

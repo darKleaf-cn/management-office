@@ -45,6 +45,7 @@ export interface RqApplyAdd {
   applyDeviceId: string;
   applyDeviceNum: number;
   applyReason: string;
+  applyTime: string;
 }
 
 // 申领删除

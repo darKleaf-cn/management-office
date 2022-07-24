@@ -298,21 +298,22 @@
 
 #### 2.1.2 返回结果
 
-| 参数名称                    | 类型   | 必要 | 描述         |
-| :-------------------------- | :----- | :--- | :----------- |
-| code                        | int    | 必要 | 状态码       |
+| 参数名称                    | 类型   | 必要 | 描述                                          |
+| :-------------------------- | :----- | :--- | :-------------------------------------------- |
+| code                        | int    | 必要 | 状态码                                        |
 | message                     | string | 必要 |
-| data                        | object | 必要 | &nbsp;       |
-| &emsp;total                 | number | 必要 | 申领记录总数 |
-| &emsp;applyList             | array  | 必要 | 申领记录数组 |
-| &emsp;&emsp;applyId         | string | 必要 | 申领记录 id  |
-| &emsp;&emsp;applyPeople     | string | 必要 | 申领人       |
-| &emsp;&emsp;applyPhone      | string | 必要 | 申领人电话   |
-| &emsp;&emsp;applyDeviceId   | string | 必要 | 申领物品 Id  |
-| &emsp;&emsp;applyDeviceName | string | 必要 | 申领物品名称 |
-| &emsp;&emsp;applyDeviceNum  | int    | 必要 | 申领物品数量 |
-| &emsp;&emsp;applyReason     | string | 必要 | 申领理由     |
-| &emsp;&emsp;applyTime       | string | 必要 | 申领时间     |
+| data                        | object | 必要 | &nbsp;                                        |
+| &emsp;total                 | number | 必要 | 申领记录总数                                  |
+| &emsp;applyList             | array  | 必要 | 申领记录数组                                  |
+| &emsp;&emsp;applyId         | string | 必要 | 申领记录 id                                   |
+| &emsp;&emsp;applyPeople     | string | 必要 | 申领人                                        |
+| &emsp;&emsp;applyPhone      | string | 必要 | 申领人电话                                    |
+| &emsp;&emsp;applyDeviceId   | string | 必要 | 申领物品 Id                                   |
+| &emsp;&emsp;applyDeviceName | string | 必要 | 申领物品名称                                  |
+| &emsp;&emsp;applyDeviceNum  | int    | 必要 | 申领物品数量                                  |
+| &emsp;&emsp;applyReason     | string | 必要 | 申领理由                                      |
+| &emsp;&emsp;applyTime       | string | 必要 | 申领时间                                      |
+| &emsp;&emsp;applyState      | int    | 必要 | 申领状态：1、审核中；2、审核成功；3、审核失败 |
 
 请求实例：
 
@@ -331,7 +332,8 @@
 				applyDeviceName: "办公桌",
 				applyDeviceNum: 1,
 				applyReason: "理由",
-				applyTime: "2020-01-03"
+				applyTime: "2020-01-03",
+				applyState: 1
 			}
 		]
 	}

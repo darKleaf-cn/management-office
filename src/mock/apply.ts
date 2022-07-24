@@ -10,7 +10,9 @@ export function applyList() {
         'applyDeviceName|1': '@string',
         'applyDeviceId|1': '@string',
         'applyDeviceNum|1-10': 1,
-        'applyReason|1': '@string'
+        'applyReason|1': '@string',
+        'applyTime|1': '@time',
+        'applyState|1-3': 1
       }
     ]
   });
