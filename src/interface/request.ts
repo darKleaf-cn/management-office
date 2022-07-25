@@ -82,3 +82,25 @@ export interface RqDeviceScrap {
   deviceId: string;
   time?: string;
 }
+
+// 采购列表
+export interface RqPurchaseList {
+  page: number;
+  size: number;
+  deviceName?: string;
+  deviceTypeId?: string;
+}
+
+// 采购添加
+export interface RqPurchaseAdd {
+  purchaseDeviceName: string;
+  purchaseDeviceTypeId: string;
+  purchaseDeviceDescribe: string;
+  purchaseDeviceSupplier: string;
+  purchaseDeviceNum: number;
+}
+
+// 采购删除
+export interface RqPurchaseDelete {
+  purchaseId: string;
+}

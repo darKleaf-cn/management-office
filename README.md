@@ -646,7 +646,7 @@
 }
 ```
 
-#### 3.1.2 返回结果
+#### 4.1.2 返回结果
 
 | 参数名称             | 类型   | 必要 | 描述     |
 | :------------------- | :----- | :--- | :------- |
@@ -673,5 +673,162 @@
 			}
 		]
 	}
+}
+```
+
+## 5 采购模块
+
+- **采购相关接口地址统一前缀：** /purchase
+
+### 5.1 列表
+
+- **地址：** /list
+
+#### 5.1.1 请求参数
+
+| 参数名称            | 类型   | 必要   | 描述                                     |
+| :------------------ | :----- | :----- | :--------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                               |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要   | &nbsp;                                   |
+| &emsp;page          | int    | 必要   | 页数                                     |
+| &emsp;size          | int    | 必要   | 每页条数                                 |
+| &emsp;deviceName    | string | 不必要 | 设备名称                                 |
+| &emsp;deviceTypeId  | string | 不必要 | 设备类型 Id                              |
+
+请求实例：
+
+```
+{
+	page:1,
+	size:10，
+	deviceName:'',
+	deviceTypeId: ''
+}
+```
+
+#### 5.1.2 返回结果
+
+| 参数名称 | 类型 | 必要 | 描述 |
+| :-- | :-- | :-- | :-- |
+| code | int | 必要 | 状态码 |
+| message | string | 必要 |
+| data | object | 必要 | &nbsp; |
+| &emsp;total | number | 必要 | 采购记录总数 |
+| &emsp;purchaseList | array | 必要 | 采购数组 |
+| &emsp;&emsp;purchaseId | string | 必要 | 采购 id |
+| &emsp;&emsp;purchaseState | int | 必要 | 采购记录状态：1、审核中；2、审核成功；3、审核失败 |
+| &emsp;&emsp;purchaseDeviceId | string | 必要 | 采购设备 id |
+| &emsp;&emsp;purchaseDeviceName | string | 必要 | 采购设备名称 |
+| &emsp;&emsp;purchaseDeviceTypeId | string | 必要 | 采购设备类型 id |
+| &emsp;&emsp;purchaseDeviceTypeName | string | 必要 | 采购设备类型名称 |
+| &emsp;&emsp;purchaseDeviceDescribe | string | 必要 | 采购设备描述 |
+| &emsp;&emsp;purchaseDeviceSupplier | string | 必要 | 采购设备供应商 |
+| &emsp;&emsp;purchaseDeviceNum | int | 必要 | 采购设备数量 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+	data: {
+		total: 1,
+		purchaseList: [
+			{
+				purchaseId：'1212'
+				purchaseState: 1,
+				purchaseDeviceId: '2121',
+				purchaseDeviceName: '',
+				purchaseDeviceTypeId: '',
+				purchaseDeviceTypeName:'',
+				purchaseDeviceDescribe: '',
+				purchaseDeviceSupplier: '',
+				purchaseDeviceNum: 1
+			}
+		]
+	}
+}
+```
+
+### 5.2 添加
+
+- **地址：** /add
+
+#### 5.2.1 请求参数
+
+| 参数名称                     | 类型   | 必要 | 描述                                     |
+| :--------------------------- | :----- | :--- | :--------------------------------------- |
+| Header                       | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization          | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                         | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;purchaseDeviceName     | string | 必要 | 采购设备名称                             |
+| &emsp;purchaseDeviceTypeId   | string | 必要 | 采购设备类型 id                          |
+| &emsp;purchaseDeviceDescribe | string | 必要 | 采购设备描述                             |
+| &emsp;purchaseDeviceSupplier | string | 必要 | 采购设备供应商                           |
+| &emsp;purchaseDeviceNum      | int    | 必要 | 采购设备数量                             |
+
+请求实例：
+
+```
+{
+	purchaseDeviceName: '',
+	purchaseDeviceTypeId: '',
+	purchaseDeviceDescribe: '',
+	purchaseDeviceSupplier: '',
+	purchaseDeviceNum: 1
+}
+```
+
+#### 5.2.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+### 5.3 删除
+
+- **地址：** /delete
+
+#### 5.3.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;purchaseId    | string | 必要 | 采购记录 id                              |
+
+请求实例：
+
+```
+{
+	purchaseId: ''
+}
+```
+
+#### 5.3.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
 }
 ```

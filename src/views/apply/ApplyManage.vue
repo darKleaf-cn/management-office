@@ -72,11 +72,7 @@
           <el-input v-model="data.applyForm.applyPeople"></el-input>
         </el-form-item>
         <el-form-item label="申领人电话" prop="applyPhone">
-          <el-input
-            v-model="data.applyForm.applyPhone"
-            autocomplete="off"
-            type="password"
-          ></el-input>
+          <el-input v-model="data.applyForm.applyPhone" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="申领物品" prop="applyDeviceId">
           <el-select

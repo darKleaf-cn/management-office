@@ -3,6 +3,7 @@ import { login, logout, userList, userDelete, userAdd, userUpdate } from './user
 import { applyList, applyAdd, applyDelete, applyUpdate } from './apply';
 import { deviceList, deviceScrap, deviceSku } from './device';
 import { typeList } from './type';
+import { purchaseList, purchaseAdd, purchaseDelete } from './purchase';
 
 Mock.setup({
   timeout: '300-600'
@@ -29,5 +30,10 @@ Mock.mock(/\/device\/scrap/, 'post', deviceScrap);
 
 // 类型
 Mock.mock(/\/type\/list/, 'post', typeList);
+
+// 采购管理
+Mock.mock(/\/purchase\/list/, 'post', purchaseList);
+Mock.mock(/\/purchase\/delete/, 'post', purchaseDelete);
+Mock.mock(/\/purchase\/add/, 'post', purchaseAdd);
 
 export default Mock;

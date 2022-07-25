@@ -42,6 +42,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: Layout,
+    name: '采购管理',
+    children: [
+      {
+        path: '/purchase',
+        component: () => import('@/views/purchase/PurchaseManage.vue')
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
     name: '库存管理',
     children: [
       {

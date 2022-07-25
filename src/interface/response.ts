@@ -2,6 +2,7 @@ import { UserForm } from './userManage';
 import { ApplyForm } from './applyManage,';
 import { deviceForm } from './deviceManage';
 import { TypeForm } from './type';
+import { PurchaseForm } from './purchase';
 export interface RsNormal {
   code: number;
   message: string;
@@ -41,5 +42,12 @@ export interface RsTypeList extends RsNormal {
   data?: {
     total: number;
     typeList: Array<TypeForm>;
+  };
+}
+
+export interface RsPurchaseList extends RsNormal {
+  data?: {
+    total: number;
+    purchaseList: Array<PurchaseForm>;
   };
 }
