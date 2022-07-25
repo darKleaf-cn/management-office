@@ -79,7 +79,21 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="申领物品" prop="applyDeviceId">
-          <el-input v-model="data.applyForm.applyDeviceId"></el-input>
+          <el-select
+            v-model="data.applyForm.applyDeviceId"
+            filterable
+            remote
+            :remote-method="queryDeviceList"
+            :loading="loading"
+            placeholder="Select"
+          >
+            <el-option
+              v-for="item in data.deviceData"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item label="申领物品数量" prop="applyDeviceNum">
           <el-input v-model="data.applyForm.applyDeviceNum" type="number" min="1"></el-input>
@@ -101,12 +115,18 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { ApplyForm } from '@/interface/applyManage,';
-import { RsNormal, RsApplyList } from '@/interface/response';
+import { RsNormal, RsApplyList, RsDeviceList } from '@/interface/response';
 import { applyList, applyDelete, applyAdd, applyUpdate } from '@/api/apply';
+import { deviceList } from '@/api/device';
 import Message from '@/util/message';
 import { ElMessageBox } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 
+interface DeviceData {
+  key: string;
+  label: string;
+  value: string;
+}
 export default defineComponent({
   setup() {
     const data = reactive({
@@ -124,7 +144,8 @@ export default defineComponent({
         applyDeviceNum: 1,
         applyReason: '',
         applyTime: ''
-      }
+      },
+      deviceData: new Array<DeviceData>()
     });
     // 搜索模块
 
@@ -271,6 +292,27 @@ export default defineComponent({
       }
     }
 
+    const loading = ref(false);
+    async function queryDeviceList(query: string) {
+      const params = {
+        page: 1,
+        size: 20,
+        deviceName: query
+      };
+      const res: RsDeviceList = await deviceList(params);
+      if (res.code === 200 && res.data) {
+        data.deviceData = res.data.deviceList.map((item) => {
+          return {
+            label: item.deviceName,
+            key: item.deviceId,
+            value: item.deviceId
+          };
+        });
+      } else {
+        Message('error', res.message);
+      }
+    }
+
     onMounted(function () {
       queryList();
     });
@@ -288,7 +330,9 @@ export default defineComponent({
       check,
       cancel,
       form,
-      rules
+      rules,
+      loading,
+      queryDeviceList
     };
   }
 });

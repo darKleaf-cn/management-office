@@ -62,3 +62,23 @@ export interface RqApplyUpdate {
   applyDeviceNum: number;
   applyReason: string;
 }
+
+// 设备列表
+export interface RqDeviceList {
+  page: number;
+  size: number;
+  deviceName?: string;
+  deviceTypeId?: string;
+}
+
+// 库存修改
+export interface RqDeviceSku {
+  deviceId: string;
+  deviceNum: number;
+}
+
+// 报废
+export interface RqDeviceScrap {
+  deviceId: string;
+  time?: string;
+}

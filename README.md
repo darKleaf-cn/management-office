@@ -489,6 +489,7 @@
 | &emsp;page          | int    | 必要   | 页数                                     |
 | &emsp;size          | int    | 必要   | 每页条数                                 |
 | &emsp;deviceName    | string | 不必要 | 设备名称                                 |
+| &emsp;deviceTypeId  | string | 不必要 | 设备类型 Id                              |
 
 请求实例：
 
@@ -496,7 +497,8 @@
 {
 	page:1,
 	size:10，
-	deviceName:''
+	deviceName:'',
+	deviceTypeId: ''
 }
 ```
 
@@ -515,7 +517,7 @@
 | &emsp;&emsp;deviceTypeName | string | 必要 | 设备类型名称                |
 | &emsp;&emsp;deviceNum      | int    | 必要 | 设备库存                    |
 | &emsp;&emsp;deviceDescribe | int    | 必要 | 设备描述                    |
-| &emsp;&emsp;deviceState    | string | 必要 | 设备状态： 1、正常；0、报废 |
+| &emsp;&emsp;deviceState    | int    | 必要 | 设备状态： 1、正常；0、报废 |
 | &emsp;&emsp;deviceSupplier | string | 必要 | 设备供应商                  |
 
 请求实例：
@@ -534,8 +536,140 @@
 				deviceTypeName： "办公桌"
 				deviceNum: 1,
 				deviceDescribe: "描述",
-				deviceState: "1",
+				deviceState: 1,
 				deviceSupplier: '某企业'
+			}
+		]
+	}
+}
+```
+
+### 3.2 库存修改
+
+- **地址：** /sku
+
+#### 3.2.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;deviceId      | string | 必要 | 设备 Id                                  |
+| &emsp;deviceNum     | int    | 必要 | 库存数量                                 |
+
+请求实例：
+
+```
+{
+	deviceId:'2312321',
+	deviceNum:10，
+}
+```
+
+#### 3.2.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+### 3.3 报废
+
+- **地址：** /scrap
+
+#### 3.3.1 请求参数
+
+| 参数名称            | 类型   | 必要   | 描述                                               |
+| :------------------ | :----- | :----- | :------------------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                                         |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段           |
+| body                | &nbsp; | 必要   | &nbsp;                                             |
+| &emsp;deviceId      | string | 必要   | 设备 Id                                            |
+| &emsp;time          | string | 不必要 | 报废时间（该字段为空则一键报废，不为空则预约报废） |
+
+请求实例：
+
+```
+{
+	deviceId:'2312321',
+	time:'2022 10:03:17'
+}
+```
+
+#### 3.3.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+## 4 类型模块
+
+- **类型相关接口地址统一前缀：** /type
+
+### 4.1 列表
+
+- **地址：** /list
+
+#### 4.1.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+
+请求实例：
+
+```
+{
+
+}
+```
+
+#### 3.1.2 返回结果
+
+| 参数名称             | 类型   | 必要 | 描述     |
+| :------------------- | :----- | :--- | :------- |
+| code                 | int    | 必要 | 状态码   |
+| message              | string | 必要 |
+| data                 | object | 必要 | &nbsp;   |
+| &emsp;total          | number | 必要 | 类型总数 |
+| &emsp;typeList       | array  | 必要 | 类型数组 |
+| &emsp;&emsp;typeId   | string | 必要 | 类型 id  |
+| &emsp;&emsp;typeName | string | 必要 | 类型名称 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+	data: {
+		total: 1,
+		typeList: [
+			{
+				typeId: '212',
+				typeName: ''
 			}
 		]
 	}

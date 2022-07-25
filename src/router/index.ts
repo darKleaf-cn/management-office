@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   },
-	{
+  {
     path: '/',
     component: Layout,
     name: '申领管理',
@@ -36,6 +36,28 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/apply',
         component: () => import('@/views/apply/ApplyManage.vue')
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    name: '库存管理',
+    children: [
+      {
+        path: '/sku',
+        component: () => import('@/views/device/SkuManage.vue')
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    name: '资产报废',
+    children: [
+      {
+        path: '/scrap',
+        component: () => import('@/views/device/ScrapManage.vue')
       }
     ]
   }
