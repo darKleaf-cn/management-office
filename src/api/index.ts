@@ -2,6 +2,7 @@ import axios, { AxiosResponseHeaders } from 'axios';
 import router from '@/router/index';
 import store from '../store';
 import { RsNormal } from '@/interface/response';
+import { removeStore } from '@/util/storage';
 
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www=form-urlencoded';
@@ -29,6 +30,7 @@ axios.interceptors.response.use(
       router.push({
         path: '/user/login'
       });
+      removeStore('user');
     } else {
       return Promise.reject(response);
     }

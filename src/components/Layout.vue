@@ -60,7 +60,13 @@ export default defineComponent({
     const store = useStore();
     const router = useRouter();
     const navRouter = router.options.routes.filter((router) => {
-      return router.meta ? !router.meta.hidden : true;
+      if (store.state.permission === 1) {
+        return router.meta ? !router.meta.hidden : true;
+      } else if (store.state.permission === 2) {
+        return router.meta ? !router.meta.hidden && router.meta.permission === 2 : true;
+      } else {
+        return router.meta ? !router.meta.hidden && router.meta.permission === 3 : true;
+      }
     });
     const username = computed(() => store.state.username);
     const handleClick = async function () {

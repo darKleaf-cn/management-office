@@ -32,6 +32,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: '申领管理',
+    meta: {
+      permission: 2
+    },
     children: [
       {
         path: '/apply',
@@ -43,6 +46,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: '采购管理',
+    meta: {
+      permission: 2
+    },
     children: [
       {
         path: '/purchase',
@@ -54,6 +60,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: '库存管理',
+    meta: {
+      permission: 2
+    },
     children: [
       {
         path: '/sku',
@@ -65,6 +74,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: '资产报废',
+    meta: {
+      permission: 2
+    },
     children: [
       {
         path: '/scrap',
@@ -76,6 +88,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/audit',
     component: Layout,
     name: '审核管理',
+    meta: {
+      permission: 3
+    },
     children: [
       {
         path: 'apply',
@@ -93,6 +108,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: Layout,
     name: '用户管理',
+    meta: {
+      permission: 1
+    },
     children: [
       {
         path: '/user',
