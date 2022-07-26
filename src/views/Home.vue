@@ -1,31 +1,26 @@
 <template>
   <div class="home">
     <el-row>
-      <span>开始时间：</span>
-      <el-date-picker
-        class="startTime"
-        v-model="data.startTime"
-        type="datetime"
-        placeholder="请选择开始时间" />
-      <span>结束时间：</span>
-      <el-date-picker
-        class="endTime"
-        v-model="data.endTime"
-        type="datetime"
-        placeholder="请选择结束时间"
-    /></el-row>
+      <el-col
+        ><el-radio-group v-model="data.section" size="large">
+          <el-radio-button label="1">近一周内</el-radio-button>
+          <el-radio-button label="2">近半个月内</el-radio-button>
+          <el-radio-button label="3">近一个月内</el-radio-button>
+        </el-radio-group></el-col
+      >
+      <el-col>
+        <span>总共申领{{ all }}件设备</span>
+      </el-col>
+    </el-row>
     <el-row>
       <el-col :span="12"><div class="pie" ref="pie"></div></el-col>
       <el-col :span="12"><div class="bar" ref="bar"></div></el-col>
-    </el-row>
-    <el-row>
-      <div class="list"></div>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue';
 import { applyStatistics } from '@/api/apply';
 import { RsApplyStatistics } from '@/interface/response';
 import { ApplyStatisticsForm } from '@/interface/applyManage';
@@ -37,25 +32,38 @@ export default defineComponent({
     const bar = ref();
     const data = reactive({
       typeList: new Array<ApplyStatisticsForm>(),
-      startTime: new Date().toString(),
-      endTime: new Date().toString()
+      section: 1
     });
+    let chartPie: echarts.ECharts;
+    let chartBar: echarts.ECharts;
+
     async function queryList() {
       const params = {
-        startTime: data.startTime,
-        endTime: data.endTime
+        section: data.section
       };
       const res: RsApplyStatistics = await applyStatistics(params);
       if (res.code === 200 && res.data) {
         data.typeList = res.data.typeList;
+        updateEcharts();
       } else {
         Message('error', res.message);
       }
     }
-    onMounted(async function () {
-      const chartPie = echarts.init(pie.value);
-      const chartBar = echarts.init(bar.value);
-      await queryList();
+    onMounted(() => {
+      queryList();
+    });
+    watch(
+      () => data.section,
+      () => {
+        queryList();
+      }
+    );
+
+    function updateEcharts() {
+      if (!chartBar || !chartPie) {
+        chartPie = echarts.init(pie.value);
+        chartBar = echarts.init(bar.value);
+      }
       chartPie.setOption({
         xAxis: {
           data: data.typeList.map((item) => item.name)
@@ -71,8 +79,7 @@ export default defineComponent({
       });
       chartBar.setOption({
         title: {
-          text: 'Referer of a Website',
-          subtext: 'Fake Data',
+          text: '近期申领数量',
           left: 'center'
         },
         tooltip: {
@@ -98,11 +105,20 @@ export default defineComponent({
           }
         ]
       });
+    }
+
+    const all = computed(() => {
+      let num = 0;
+      for (const item of data.typeList) {
+        num += item.value;
+      }
+      return num;
     });
     return {
       pie,
       bar,
-      data
+      data,
+      all
     };
   }
 });
@@ -111,18 +127,21 @@ export default defineComponent({
 <style lang="scss">
 .home {
   .el-row {
-    background-color: #ffffff;
     margin-bottom: 20px;
-    align-items: center;
-    padding: 20px;
-    > span,
-    .startTime,
-    .endTime {
-      margin-right: 20px;
-    }
-    .pie,
-    .bar {
-      height: 400px;
+    justify-content: space-between;
+
+    .el-col {
+      min-height: 60px;
+      padding: 10px;
+      background-color: #ffffff;
+      max-width: 50%;
+      display: flex;
+      justify-content: left;
+      .pie,
+      .bar {
+        height: 500px;
+        width: 100%;
+      }
     }
   }
 }

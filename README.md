@@ -482,15 +482,13 @@
 | Header              | &nbsp; | 必要 | 请求报文头                               |
 | &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
 | body                | &nbsp; | 必要 | &nbsp;                                   |
-| &emsp;startTime     | string | 必要 | 开始时间                                 |
-| &emsp;endTime       | string | 必要 | 结束时间                                 |
+| &emsp;section       | int    | 必要 | 1、一周内；2、半月内；3、一个月内        |
 
 请求实例：
 
 ```
 {
-	startTime: '2022-01-21 2:00:00',
-	endTime: '2022-01-21 2:00:00',
+	section: 1
 }
 ```
 

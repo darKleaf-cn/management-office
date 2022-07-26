@@ -65,8 +65,7 @@ export interface RqApplyUpdate {
 
 // 统计分析
 export interface RqApplyStatistics {
-  startTime: string;
-  endTime: string;
+  section: number;
 }
 
 // 设备列表
