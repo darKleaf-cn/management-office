@@ -1,5 +1,5 @@
 import { UserForm } from './userManage';
-import { ApplyForm } from './applyManage,';
+import { ApplyForm, ApplyStatisticsForm } from './applyManage';
 import { deviceForm } from './deviceManage';
 import { TypeForm } from './type';
 import { PurchaseForm } from './purchase';
@@ -28,6 +28,13 @@ export interface RsApplyList extends RsNormal {
   data?: {
     total: number;
     applyList: Array<ApplyForm>;
+  };
+}
+
+export interface RsApplyStatistics extends RsNormal {
+  data?: {
+    total: number;
+    typeList: Array<ApplyStatisticsForm>;
   };
 }
 

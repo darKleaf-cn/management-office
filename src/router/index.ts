@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    redirect: 'user',
+    redirect: 'home',
     meta: {
       hidden: true
     }
@@ -20,11 +20,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     component: Layout,
-    name: '用户管理',
+    name: '我的首页',
     children: [
       {
-        path: '/user',
-        component: () => import('@/views/user/UserManage.vue')
+        path: '/home',
+        component: () => import('@/views/Home.vue')
       }
     ]
   },
@@ -69,6 +69,34 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/scrap',
         component: () => import('@/views/device/ScrapManage.vue')
+      }
+    ]
+  },
+  {
+    path: '/audit',
+    component: Layout,
+    name: '审核管理',
+    children: [
+      {
+        path: 'apply',
+        name: '申领审核',
+        component: () => import('@/views/audit/AuditApplyManage.vue')
+      },
+      {
+        path: 'purchase',
+        name: '采购审核',
+        component: () => import('@/views/audit/AuditPurchaseManage.vue')
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    name: '用户管理',
+    children: [
+      {
+        path: '/user',
+        component: () => import('@/views/user/UserManage.vue')
       }
     ]
   }

@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 
-export function applyList() {
+export function auditApplyList() {
   const data = Mock.mock({
     'applyList|10': [
       {
@@ -26,33 +26,26 @@ export function applyList() {
   };
 }
 
-export function applyDelete() {
+export function auditApply() {
   return {
     code: 200,
     message: 'success'
   };
 }
 
-export function applyUpdate() {
-  return {
-    code: 200,
-    message: 'success'
-  };
-}
-
-export function applyAdd() {
-  return {
-    code: 200,
-    message: 'success'
-  };
-}
-
-export function applyStatistics() {
+export function auditPurchaseList() {
   const data = Mock.mock({
-    'typeList|10-20': [
+    'purchaseList|10': [
       {
-        'name|1': '@string',
-        'value|1-20': 1
+        'purchaseId|1': '@id',
+        'purchaseState|1-3': 1,
+        'purchaseDeviceId|1': '@string',
+        'purchaseDeviceName|1': '@string',
+        'purchaseDeviceTypeId|1': '@string',
+        'purchaseDeviceTypeName|1': '@string',
+        'purchaseDeviceDescribe|1': '@string',
+        'purchaseDeviceSupplier|1': '@string',
+        'purchaseDeviceNum|1-3': 1
       }
     ]
   });
@@ -60,8 +53,15 @@ export function applyStatistics() {
     code: 200,
     message: 'success',
     data: {
-      total: data.typeList.length,
-      typeList: data.typeList
+      total: data.purchaseList.length,
+      purchaseList: data.purchaseList
     }
+  };
+}
+
+export function auditPurchase() {
+  return {
+    code: 200,
+    message: 'success'
   };
 }

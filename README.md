@@ -471,6 +471,59 @@
 }
 ```
 
+### 2.5 统计分析
+
+- **地址：** /statistics
+
+#### 2.5.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;startTime     | string | 必要 | 开始时间                                 |
+| &emsp;endTime       | string | 必要 | 结束时间                                 |
+
+请求实例：
+
+```
+{
+	startTime: '2022-01-21 2:00:00',
+	endTime: '2022-01-21 2:00:00',
+}
+```
+
+#### 2.5.2 返回结果
+
+| 参数名称          | 类型   | 必要 | 描述     |
+| :---------------- | :----- | :--- | :------- |
+| code              | int    | 必要 | 状态码   |
+| message           | string | 必要 |
+| data              | object | 必要 | &nbsp;   |
+| &emsp;total       | int    | 必要 | 类型总数 |
+| &emsp;typeList    | array  | 必要 | 类型数组 |
+| &emsp;&emsp;name  | string | 必要 | 类型名称 |
+| &emsp;&emsp;value | int    | 必要 | 类型数量 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功",
+	data: {
+		total: 1,
+		typeList: [
+			{
+				name: '',
+				value: 1
+			}
+		]
+	}
+}
+```
+
 ## 3 库存模块/报废模块
 
 - **设备相关接口地址统一前缀：** /device
@@ -818,6 +871,222 @@
 ```
 
 #### 5.3.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+## 6 审核模块
+
+- **审核相关接口地址统一前缀：** /audit
+
+### 6.1 申领审核列表
+
+- **地址：** /apply/list
+
+#### 6.1.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;page          | int    | 必要 | 页数                                     |
+| &emsp;size          | int    | 必要 | 每页条数                                 |
+
+请求实例：
+
+```
+{
+	page:1,
+	size:10，
+}
+```
+
+#### 6.1.2 返回结果
+
+| 参数名称                    | 类型   | 必要 | 描述         |
+| :-------------------------- | :----- | :--- | :----------- |
+| code                        | int    | 必要 | 状态码       |
+| message                     | string | 必要 |
+| data                        | object | 必要 | &nbsp;       |
+| &emsp;total                 | number | 必要 | 申领记录总数 |
+| &emsp;applyList             | array  | 必要 | 申领记录数组 |
+| &emsp;&emsp;applyId         | string | 必要 | 申领记录 id  |
+| &emsp;&emsp;applyPeople     | string | 必要 | 申领人       |
+| &emsp;&emsp;applyPhone      | string | 必要 | 申领人电话   |
+| &emsp;&emsp;applyDeviceId   | string | 必要 | 申领物品 Id  |
+| &emsp;&emsp;applyDeviceName | string | 必要 | 申领物品名称 |
+| &emsp;&emsp;applyDeviceNum  | int    | 必要 | 申领物品数量 |
+| &emsp;&emsp;applyReason     | string | 必要 | 申领理由     |
+| &emsp;&emsp;applyTime       | string | 必要 | 申领时间     |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+	data: {
+		total: 1,
+		applyList: [
+			{
+				applyId: "12312312",
+				applyPeople: "张三",
+				applyPhone "123123",
+				applyDeviceId： "231232"
+				applyDeviceName: "办公桌",
+				applyDeviceNum: 1,
+				applyReason: "理由",
+				applyTime: "2020-01-03"
+			}
+		]
+	}
+}
+```
+
+### 6.2 申领审核
+
+- **地址：** /apply/check
+
+#### 6.2.1 请求参数
+
+| 参数名称            | 类型   | 必要   | 描述                                     |
+| :------------------ | :----- | :----- | :--------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                               |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要   | &nbsp;                                   |
+| &emsp;applyId       | string | 必要   | 申领记录 id                              |
+| &emsp;flag          | int    | 必要   | 1、通过；0、不通过                       |
+| &emsp;reason        | string | 不必要 | 原因                                     |
+
+请求实例：
+
+```
+{
+	applyId:'',
+	flag:1,
+	reason：''
+}
+```
+
+#### 6.2.2 返回结果
+
+| 参数名称 | 类型   | 必要 | 描述   |
+| :------- | :----- | :--- | :----- |
+| code     | int    | 必要 | 状态码 |
+| message  | string | 必要 |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+}
+```
+
+### 6.3 采购审核列表
+
+- **地址：** /purchase/list
+
+#### 6.3.1 请求参数
+
+| 参数名称            | 类型   | 必要 | 描述                                     |
+| :------------------ | :----- | :--- | :--------------------------------------- |
+| Header              | &nbsp; | 必要 | 请求报文头                               |
+| &emsp;Authorization | string | 必要 | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要 | &nbsp;                                   |
+| &emsp;page          | int    | 必要 | 页数                                     |
+| &emsp;size          | int    | 必要 | 每页条数                                 |
+
+请求实例：
+
+```
+{
+	page:1,
+	size:10
+}
+```
+
+#### 6.3.2 返回结果
+
+| 参数名称                           | 类型   | 必要 | 描述             |
+| :--------------------------------- | :----- | :--- | :--------------- |
+| code                               | int    | 必要 | 状态码           |
+| message                            | string | 必要 |
+| data                               | object | 必要 | &nbsp;           |
+| &emsp;total                        | number | 必要 | 采购记录总数     |
+| &emsp;purchaseList                 | array  | 必要 | 采购数组         |
+| &emsp;&emsp;purchaseId             | string | 必要 | 采购 id          |
+| &emsp;&emsp;purchaseDeviceId       | string | 必要 | 采购设备 id      |
+| &emsp;&emsp;purchaseDeviceName     | string | 必要 | 采购设备名称     |
+| &emsp;&emsp;purchaseDeviceTypeId   | string | 必要 | 采购设备类型 id  |
+| &emsp;&emsp;purchaseDeviceTypeName | string | 必要 | 采购设备类型名称 |
+| &emsp;&emsp;purchaseDeviceDescribe | string | 必要 | 采购设备描述     |
+| &emsp;&emsp;purchaseDeviceSupplier | string | 必要 | 采购设备供应商   |
+| &emsp;&emsp;purchaseDeviceNum      | int    | 必要 | 采购设备数量     |
+
+请求实例：
+
+```
+{
+	code: 200,
+	message: "成功"
+	data: {
+		total: 1,
+		purchaseList: [
+			{
+				purchaseId：'1212'
+				purchaseDeviceId: '2121',
+				purchaseDeviceName: '',
+				purchaseDeviceTypeId: '',
+				purchaseDeviceTypeName:'',
+				purchaseDeviceDescribe: '',
+				purchaseDeviceSupplier: '',
+				purchaseDeviceNum: 1
+			}
+		]
+	}
+}
+```
+
+### 6.4 采购审核
+
+- **地址：** /purchase/check
+
+#### 6.4.1 请求参数
+
+| 参数名称            | 类型   | 必要   | 描述                                     |
+| :------------------ | :----- | :----- | :--------------------------------------- |
+| Header              | &nbsp; | 必要   | 请求报文头                               |
+| &emsp;Authorization | string | 必要   | 验证用户登录后 token，没有登录则无该字段 |
+| body                | &nbsp; | 必要   | &nbsp;                                   |
+| &emsp;purchaseId    | string | 必要   | 采购记录 id                              |
+| &emsp;flag          | int    | 必要   | 1、通过；0、不通过                       |
+| &emsp;reason        | string | 不必要 | 原因                                     |
+
+请求实例：
+
+```
+{
+	purchaseId:'',
+	flag:1,
+	reason:''
+}
+```
+
+#### 6.4.2 返回结果
 
 | 参数名称 | 类型   | 必要 | 描述   |
 | :------- | :----- | :--- | :----- |

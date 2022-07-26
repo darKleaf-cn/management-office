@@ -110,7 +110,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue';
-import { ApplyForm } from '@/interface/applyManage,';
+import { ApplyForm } from '@/interface/applyManage';
 import { RsNormal, RsApplyList, RsDeviceList } from '@/interface/response';
 import { applyList, applyDelete, applyAdd, applyUpdate } from '@/api/apply';
 import { deviceList } from '@/api/device';

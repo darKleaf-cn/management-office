@@ -63,6 +63,12 @@ export interface RqApplyUpdate {
   applyReason: string;
 }
 
+// 统计分析
+export interface RqApplyStatistics {
+  startTime: string;
+  endTime: string;
+}
+
 // 设备列表
 export interface RqDeviceList {
   page: number;
@@ -103,4 +109,21 @@ export interface RqPurchaseAdd {
 // 采购删除
 export interface RqPurchaseDelete {
   purchaseId: string;
+}
+
+export interface RqNormal {
+  page: number;
+  size: number;
+}
+
+export interface RqAuditApply {
+  applyId: string;
+  flag: number;
+  reason?: string;
+}
+
+export interface RqAuditPurchase {
+  purchaseId: string;
+  flag: number;
+  reason?: string;
 }

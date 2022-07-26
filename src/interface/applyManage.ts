@@ -9,3 +9,8 @@ export interface ApplyForm {
   applyTime: string;
   applyState?: number;
 }
+
+export interface ApplyStatisticsForm {
+  name: string;
+  value: number;
+}
